@@ -1,0 +1,66 @@
+[
+    {
+        "merged": "com.example.ucankafa.app-merged_res-20:/mipmap-mdpi_ucankafa_adaptive_back.png.flat",
+        "source": "com.example.ucankafa.app-main-22:/mipmap-mdpi/ucankafa_adaptive_back.png"
+    },
+    {
+        "merged": "com.example.ucankafa.app-merged_res-20:/mipmap-hdpi_ucankafa_adaptive_back.png.flat",
+        "source": "com.example.ucankafa.app-main-22:/mipmap-hdpi/ucankafa_adaptive_back.png"
+    },
+    {
+        "merged": "com.example.ucankafa.app-merged_res-20:/mipmap-xhdpi_ucankafa_adaptive_fore.png.flat",
+        "source": "com.example.ucankafa.app-main-22:/mipmap-xhdpi/ucankafa_adaptive_fore.png"
+    },
+    {
+        "merged": "com.example.ucankafa.app-merged_res-20:/mipmap-xxhdpi_ucankafa.png.flat",
+        "source": "com.example.ucankafa.app-main-22:/mipmap-xxhdpi/ucankafa.png"
+    },
+    {
+        "merged": "com.example.ucankafa.app-merged_res-20:/mipmap-xxxhdpi_ucankafa_adaptive_back.png.flat",
+        "source": "com.example.ucankafa.app-main-22:/mipmap-xxxhdpi/ucankafa_adaptive_back.png"
+    },
+    {
+        "merged": "com.example.ucankafa.app-merged_res-20:/mipmap-xxhdpi_ucankafa_adaptive_back.png.flat",
+        "source": "com.example.ucankafa.app-main-22:/mipmap-xxhdpi/ucankafa_adaptive_back.png"
+    },
+    {
+        "merged": "com.example.ucankafa.app-merged_res-20:/mipmap-mdpi_ucankafa.png.flat",
+        "source": "com.example.ucankafa.app-main-22:/mipmap-mdpi/ucankafa.png"
+    },
+    {
+        "merged": "com.example.ucankafa.app-merged_res-20:/mipmap-xxxhdpi_ucankafa_adaptive_fore.png.flat",
+        "source": "com.example.ucankafa.app-main-22:/mipmap-xxxhdpi/ucankafa_adaptive_fore.png"
+    },
+    {
+        "merged": "com.example.ucankafa.app-merged_res-20:/mipmap-xhdpi_ucankafa_adaptive_back.png.flat",
+        "source": "com.example.ucankafa.app-main-22:/mipmap-xhdpi/ucankafa_adaptive_back.png"
+    },
+    {
+        "merged": "com.example.ucankafa.app-merged_res-20:/mipmap-anydpi-v26_ucankafa.xml.flat",
+        "source": "com.example.ucankafa.app-main-22:/mipmap-anydpi-v26/ucankafa.xml"
+    },
+    {
+        "merged": "com.example.ucankafa.app-merged_res-20:/mipmap-hdpi_ucankafa.png.flat",
+        "source": "com.example.ucankafa.app-main-22:/mipmap-hdpi/ucankafa.png"
+    },
+    {
+        "merged": "com.example.ucankafa.app-merged_res-20:/mipmap-xxhdpi_ucankafa_adaptive_fore.png.flat",
+        "source": "com.example.ucankafa.app-main-22:/mipmap-xxhdpi/ucankafa_adaptive_fore.png"
+    },
+    {
+        "merged": "com.example.ucankafa.app-merged_res-20:/mipmap-xxxhdpi_ucankafa.png.flat",
+        "source": "com.example.ucankafa.app-main-22:/mipmap-xxxhdpi/ucankafa.png"
+    },
+    {
+        "merged": "com.example.ucankafa.app-merged_res-20:/mipmap-hdpi_ucankafa_adaptive_fore.png.flat",
+        "source": "com.example.ucankafa.app-main-22:/mipmap-hdpi/ucankafa_adaptive_fore.png"
+    },
+    {
+        "merged": "com.example.ucankafa.app-merged_res-20:/mipmap-mdpi_ucankafa_adaptive_fore.png.flat",
+        "source": "com.example.ucankafa.app-main-22:/mipmap-mdpi/ucankafa_adaptive_fore.png"
+    },
+    {
+        "merged": "com.example.ucankafa.app-merged_res-20:/mipmap-xhdpi_ucankafa.png.flat",
+        "source": "com.example.ucankafa.app-main-22:/mipmap-xhdpi/ucankafa.png"
+    }
+]

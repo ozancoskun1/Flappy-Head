@@ -1,0 +1,6 @@
+R_DEF: Internal format may change without notice
+local
+mipmap ucankafa
+mipmap ucankafa_adaptive_back
+mipmap ucankafa_adaptive_fore
+style AppTheme

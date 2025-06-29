@@ -1,0 +1,4 @@
+#Tue Jun 24 15:29:59 TRT 2025
+base.0=C\:\\Users\\Acer\\Desktop\\FlappyHead\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

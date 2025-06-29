@@ -1,0 +1,7 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Uygulama Teması -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Status bar'ı şeffaf yap -->
+        <item name="android:windowFullscreen">true</item>
+    </style>
+</resources>

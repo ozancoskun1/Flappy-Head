@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="icon" type="image/png" href="img/icon.png">
+   <meta charset="UTF-8">
+  <title>Uçan Kafa</title>
+  <style>
+    html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: sans-serif;
+  background-image: url("img/arkaplan.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+}
+   h1{
+  font-size: 36px;
+  color: white;
+  text-align: center;
+  margin: 20px 0; /* Üstten ve alttan boşluk */
+  text-shadow: 2px 2px 4px #000;
+}
+  #menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px; /* başlıkla arasında boşluk */
+}
+
+    #menuContent {
+      width: 100%;
+      max-width: 480px;
+      padding: 10px;
+      box-sizing: border-box;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .birds, .maps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 20px;
+    }
+    .item {
+      margin: 10px;
+      position: relative;
+      cursor: pointer;
+      text-align: center;
+    }
+    .item.locked::after {
+      content: "🔒\A3 reklam izle";
+      white-space: pre;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      text-align: center;
+      border-radius: 8px;
+      z-index: 1;
+    }
+    .item.selected {
+      outline: 3px solid #4CAF50;
+      border-radius: 8px;
+    }
+    .label {
+      font-size: 12px;
+      color: white;
+      margin-top: 4px;
+      text-shadow: 1px 1px 2px black;
+    }
+    canvas {
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  aspect-ratio: 4 / 5;
+}
+
+    #scoreboard {
+      display: none;
+      position: absolute;
+      top: 10px;
+      width: 100%;
+      max-width: 480px;
+      justify-content: space-between;
+      padding: 0 20px;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      text-shadow: 1px 1px 3px black;
+    }
+  #restartButton, #menuButton {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    #startButton {
+  padding: 12px 24px;
+  font-size: 18px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 20px auto 10px;
+  display: block;
+}
+    #overlay {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 10;
+  background: none;
+  pointer-events: none;
+}
+
+.overlay-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: all;
+}
+
+#overlay > div:first-child {
+  font-size: 32px;
+  color: white;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 3px black;
+}
+
+    #infoBox {
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      font-size: 16px;
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+      margin-top: 10px;
+      max-width: 480px;
+    }
+  </style>
+</head>
+<body>
+ 
+
+  <h1 id="title">Uçan Kafa</h1>
+  <div id="menu">
+    <audio id="bgMusic" src="sounds/sarki.mp3" loop></audio>
+    <div id="menuContent">
+      <div class="birds">
+        <div class="item selected" data-src="img/ronaldo.png"><img src="img/ronaldo.png" width="45"><div class="label">Penaldo</div></div>
+        <div class="item locked" data-src="img/rafasilva.png"><img src="img/rafasilva.png" width="45"><div class="label">Rafarejma</div></div>
+        <div class="item locked" data-src="img/icardi.png"><img src="img/icardi.png" width="45"><div class="label">Picardi</div></div>
+        <div class="item locked" data-src="img/messi.png"><img src="img/messi.png" width="45"><div class="label">Pessi</div></div>
+    
+        <div class="item locked" data-src="img/alex.png"><img src="img/alex.png" width="45"><div class="label">Alex de S</div></div>
+        <div class="item locked" data-src="img/quaresma.png"><img src="img/quaresma.png" width="45"><div class="label">Qarizma 7</div></div>
+        <div class="item locked" data-src="img/muslera.png"><img src="img/muslera.png" width="45"><div class="label">Taze Gol</div></div>
+        <div class="item locked" data-src="img/osimhen.png"><img src="img/osimhen.png" width="45"><div class="label">Osi</div></div>
+      </div>
+      <div class="maps">
+        <div class="item selected" data-src="img/sokakfutbolu.png"><img src="img/sokakfutbolu.png" width="100"></div>
+        <div class="item locked" data-src="img/halisaha.png"><img src="img/halisaha.png" width="100"></div>
+        <div class="item locked" data-src="img/stadyum.png"><img src="img/stadyum.png" width="100"></div>
+      </div>
+      <div id="infoBox"></div>
+      <button id="startButton">Oyna</button>
+    </div>
+  </div>
+  <canvas id="gameCanvas" width="480" height="700"></canvas>
+  <div id="scoreboard"><div id="highscore">En Yüksek Skor: 0</div><button id="toggleSound" style="background:none;border:none;color:white;font-size:22px;cursor:pointer;">🔊</button>
+<div id="score">Skor: 0</div></div>
+  <div id="overlay"><div>Öldün!</div><div class="overlay-buttons"><button id="restartButton">Yeniden Başlat</button><button id="menuButton">Menü</button></div></div>
+  <script>
+  const canvas = document.getElementById('gameCanvas');
+  canvas.style.display = 'none';
+
+  const ctx = canvas.getContext('2d');
+  const startButton = document.getElementById('startButton');
+  const restartButton = document.getElementById('restartButton');
+  const menuButton = document.getElementById('menuButton');
+  const menu = document.getElementById('menu');
+  const scoreboard = document.getElementById('scoreboard');
+  const toggleSound = document.getElementById('toggleSound');
+  let soundOn = true;
+
+  toggleSound.addEventListener('click', () => {
+    soundOn = !soundOn;
+    bgMusic.volume = soundOn ? 1 : 0;
+    toggleSound.textContent = soundOn ? '🔊' : '🔇';
+  });
+
+  const overlay = document.getElementById('overlay');
+  const infoBox = document.getElementById('infoBox');
+  const title = document.getElementById('title');
+  const bgMusic = document.getElementById('bgMusic');
+
+  let selectedBird = 'img/ronaldo.png';
+  let selectedMap = 'img/sokakfutbolu.png';
+
+  let birdY = canvas.height / 2;
+  let velocity = 0;
+  const gravity = 0.15;
+  const jumpPower = -5.0;
+  let score = 0;
+  let highscore = 0;
+  let isPlaying = false;
+  let lastScore = -1;
+
+  const pipes = [];
+  const pipeGap = 190;
+  const pipeWidth = 50;
+  const pipeInterval = 100;
+  let frame = 0;
+
+  const unlocks = JSON.parse(localStorage.getItem('unlocks') || '{}');
+  const adViews = {};
+
+  const bgImg = new Image();
+  const birdImg = new Image();
+
+  function showInfo(msg) {
+    infoBox.innerText = msg;
+    setTimeout(() => {
+      if (infoBox.innerText === msg) infoBox.innerText = '';
+    }, 3000);
+  }
+
+  function updateSelections() {
+    document.querySelectorAll('.birds .item').forEach(item => {
+      const src = item.getAttribute('data-src');
+      const unlocked = src === 'img/ronaldo.png' || unlocks[src];
+      item.classList.toggle('locked', !unlocked);
+      item.classList.toggle('selected', selectedBird === src);
+    });
+
+    document.querySelectorAll('.maps .item').forEach(item => {
+      const src = item.getAttribute('data-src');
+      const unlocked = src === 'img/sokakfutbolu.png' || unlocks[src];
+      item.classList.toggle('locked', !unlocked);
+      item.classList.toggle('selected', selectedMap === src);
+    });
+  }
+
+  document.querySelectorAll('.birds .item').forEach(item => {
+    const src = item.getAttribute('data-src');
+    item.addEventListener('click', () => {
+      if (item.classList.contains('locked')) {
+        adViews[src] = (adViews[src] || 0) + 1;
+        if (adViews[src] >= 3) {
+          unlocks[src] = true;
+          localStorage.setItem('unlocks', JSON.stringify(unlocks));
+          showInfo("Karakter açıldı!");
+        } else {
+          showInfo(`(${adViews[src]}/3)`);
+        }
+      } else {
+        selectedBird = src;
+      }
+      updateSelections();
+    });
+  });
+
+  document.querySelectorAll('.maps .item').forEach(item => {
+    const src = item.getAttribute('data-src');
+    item.addEventListener('click', () => {
+      if (item.classList.contains('locked')) {
+        adViews[src] = (adViews[src] || 0) + 1;
+        if (adViews[src] >= 3) {
+          unlocks[src] = true;
+          localStorage.setItem('unlocks', JSON.stringify(unlocks));
+          showInfo("Saha açıldı!");
+        } else {
+          showInfo(` (${adViews[src]}/3)`);
+        }
+      } else {
+        selectedMap = src;
+      }
+      updateSelections();
+    });
+  });
+
+  function resetGame() {
+    bgMusic.play();
+    birdY = canvas.height / 2;
+    velocity = 0;
+    score = 0;
+    lastScore = -1;
+    frame = 0;
+    pipes.length = 0;
+    isPlaying = true;
+
+    bgImg.src = selectedMap;
+    birdImg.src = selectedBird;
+
+    document.getElementById('score').innerText = 'Skor: 0';
+    menu.style.display = 'none';
+    overlay.style.display = 'none';
+    canvas.style.display = 'block';
+    scoreboard.style.display = 'flex';
+    title.style.display = 'none';
+    document.body.style.backgroundImage = `url(${selectedMap})`;
+
+    requestAnimationFrame(gameLoop);
+  }
+
+  function endGame() {
+    isPlaying = false;
+    overlay.style.display = 'flex';
+    canvas.style.display = 'none';
+    scoreboard.style.display = 'none';
+    score = 0;
+    document.getElementById('score').innerText = 'Skor: 0';
+  }
+
+  function gameLoop() {
+    if (!isPlaying) return;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
+
+    velocity += gravity;
+    birdY += velocity;
+
+    if (birdY > canvas.height || birdY < 0) {
+      endGame();
+      return;
+    }
+
+    if (frame % pipeInterval === 0) {
+      const topHeight = Math.random() * (canvas.height - pipeGap - 100) + 50;
+      pipes.push({
+        x: canvas.width,
+        top: topHeight,
+        bottom: topHeight + pipeGap,
+        passed: false
+      });
+    }
+
+    for (let i = 0; i < pipes.length; i++) {
+      const pipe = pipes[i];
+      pipe.x -= 2;
+
+      ctx.fillStyle = "#00ff00";
+      ctx.fillRect(pipe.x, 0, pipeWidth, pipe.top);
+      ctx.fillRect(pipe.x, pipe.bottom, pipeWidth, canvas.height - pipe.bottom);
+
+      if (
+        100 + 15 > pipe.x && 100 - 15 < pipe.x + pipeWidth &&
+        (birdY - 15 < pipe.top || birdY + 15 > pipe.bottom)
+      ) {
+        endGame();
+        return;
+      }
+
+      if (!pipe.passed && pipe.x + pipeWidth < 100) {
+        pipe.passed = true;
+        score++;
+      }
+    }
+
+    if (score !== lastScore) {
+      document.getElementById('score').innerText = 'Skor: ' + score;
+      lastScore = score;
+      if (score > highscore) {
+        highscore = score;
+        document.getElementById('highscore').innerText = 'En Yüksek Skor: ' + highscore;
+      }
+    }
+
+    ctx.drawImage(birdImg, 100 - 16, birdY - 16, 32, 32);
+    frame++;
+    requestAnimationFrame(gameLoop);
+  }
+
+  document.addEventListener('keydown', () => {
+    if (isPlaying) velocity = jumpPower;
+  });
+
+  document.addEventListener('touchstart', () => {
+    if (isPlaying) velocity = jumpPower;
+  });
+
+  startButton.addEventListener('click', resetGame);
+  restartButton.addEventListener('click', resetGame);
+  menuButton.addEventListener('click', () => {
+    overlay.style.display = 'none';
+    menu.style.display = 'flex';
+    canvas.style.display = 'none';
+    scoreboard.style.display = 'none';
+    title.style.display = 'block';
+    document.body.style.backgroundImage = '';
+  });
+
+  updateSelections();
+</script>
+
+</body>
+</html>

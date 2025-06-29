@@ -1,0 +1,4 @@
+#Wed Jun 18 01:15:22 TRT 2025
+base.0=C\:\\Users\\Acer\\Desktop\\FlappyHead\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\0\\classes.dex
+path.0=0/classes.dex
+renamed.0=classes.dex
